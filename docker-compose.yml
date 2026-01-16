@@ -1,0 +1,17 @@
+services:
+  # Nginx reverse proxy service
+  nginx:
+    image: nginx:alpine
+    container_name: my_nginx_proxy
+    ports:
+      - "80:80" # Map host port 80 to container port 80
+    volumes:
+      # Mount custom Nginx config file from host to container
+      - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - noticeboard-api_noticeboard-network
+
+# Define the custom network
+networks:
+  noticeboard-api_noticeboard-network:
+    external: true
