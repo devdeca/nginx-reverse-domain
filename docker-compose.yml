@@ -5,8 +5,6 @@ services:
     restart: unless-stopped
     environment:
       - CERTBOT_EMAIL
-    env_file:
-      - ./nginx-certbot.env
     ports:
       - 80:80
       - 443:443
