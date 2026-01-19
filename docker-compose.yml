@@ -1,17 +1,26 @@
+version: '3'
+
 services:
-  # Nginx reverse proxy service
   nginx:
-    image: nginx:alpine
-    container_name: my_nginx_proxy
+    image: jonasal/nginx-certbot:6.0.1-nginx1.29.4
+    container_name: nginx_proxy
+    restart: unless-stopped
+    environment:
+      CERTBOT_EMAIL: ${certbot_email}
+    env_file:
+      - ./nginx-certbot.env
     ports:
-      - "80:80" # Map host port 80 to container port 80
-    volumes:
-      # Mount custom Nginx config file from host to container
-      - ./config/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - 80:80
+      - 443:443
+    volumes:                                    # Storage can be either a
+      - nginx_secrets:/etc/letsencrypt          # Docker managed volume (see list at the bottom)
+      - ./config/default.d:/etc/nginx/default.d    # or a host mount with a relative or full path.
     networks:
       - noticeboard-api_noticeboard-network
 
-# Define the custom network
 networks:
   noticeboard-api_noticeboard-network:
     external: true
+
+volumes:
+  nginx_secrets:
