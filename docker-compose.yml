@@ -1,12 +1,10 @@
-version: '3'
-
 services:
   nginx:
     image: jonasal/nginx-certbot:6.0.1-nginx1.29.4
     container_name: nginx_proxy
     restart: unless-stopped
     environment:
-      CERTBOT_EMAIL: ${certbot_email}
+      - CERTBOT_EMAIL
     env_file:
       - ./nginx-certbot.env
     ports:
