@@ -13,9 +13,12 @@ services:
       - ./user_conf.d:/etc/nginx/user_conf.d 
     networks:
       - noticeboard-api_noticeboard-network
+      - wekan-tier
 
 networks:
   noticeboard-api_noticeboard-network:
+    external: true
+  wekan-tier:
     external: true
 
 volumes:
