@@ -14,11 +14,14 @@ services:
     networks:
       - noticeboard-api_noticeboard-network
       - wekan_wekan-tier
+      - wedding-network
 
 networks:
   noticeboard-api_noticeboard-network:
     external: true
   wekan_wekan-tier:
+    external: true
+  wedding-network:
     external: true
 
 volumes:
