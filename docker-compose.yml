@@ -15,6 +15,7 @@ services:
       - noticeboard-api_noticeboard-network
       - wedding-network
       - whatsapp-chats
+      - lista-cha-network
 
 networks:
   noticeboard-api_noticeboard-network:
@@ -22,6 +23,8 @@ networks:
   wedding-network:
     external: true
   whatsapp-chats:
+    external: true
+  lista-cha-network:
     external: true
 
 volumes:
